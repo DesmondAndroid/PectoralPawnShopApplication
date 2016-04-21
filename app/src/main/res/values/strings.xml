@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Pectorale</string>
+    <string name="action_settings">Настойки</string>
+    <string name="action_create_order">Войти</string>
+    <string name="title_activity_order_activity">ВойтиАктивность</string>
+    <string name="action_share">Поделиться</string>
+    <string name="hello">Hello world</string>
+    <string name="title_top">Главный фрагмент</string>
+    <string name="open_drawer">Открыть меню</string>
+    <string name="close_drawer">Закрыть меню</string>
+
+    <string-array name="departments">
+        <item>Отделение №1 в г. Боярка</item>
+        <item>Отделение №2 в г. Киев</item>
+        <item>Отделение №3 в г. Васильков</item>
+        <item>Отделение №4 в г. Фастов</item>
+        <item>Отделение №5 в г. Белая Церковь</item>
+        <item>Отделение №6 в г. Киев</item>
+        <item>Отделение №7 в г. Киев</item>
+        <item>Отделение №8 в г. Киев</item>
+        <item>Отделение №9 в г. Буча</item>
+    </string-array>
+    <string-array name="howItWorks">
+        <item>КАК ЖЕ ЭТО РАБОТАЕТ</item>
+        <item>ЧЕТЫРЕ ПРОСТЫХ ШАГА</item>
+        <item>ВОПРОСЫ И ОТВЕТЫ</item>
+        <item>ГРУППЫ ЗАЛОГОВ</item>
+    </string-array>
+    <string-array name="forClients">
+        <item>ПАРТНЕРСКАЯ ПРОГРАММА</item>
+        <item>КРЕДИТНАЯ ЛИНИЯ</item>
+    </string-array>
+    <string-array name="titles">
+        <item>Главная</item>
+        <item>Отделения</item>
+        <item>Как это работает</item>
+        <item>Клиентам</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
