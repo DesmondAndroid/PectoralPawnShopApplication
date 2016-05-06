@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
         } else {
             selectItem(0);
         }
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, com.vadym.pectoralepawnshop.R.string.open_drawer, com.vadym.pectoralepawnshop.R.string.close_drawer) {
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer) {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
                         if (fragment instanceof HowItWorksFragment) {
                             currentPosition = 2;
                         }
-                        if (fragment instanceof ForClientsFragment) {
+                        if (fragment instanceof ForClientMaterialFragment) {
                             currentPosition = 3;
                         }
                         setActionBarTitle(currentPosition);
@@ -116,7 +116,7 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(com.vadym.pectoralepawnshop.R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         MenuItem menuItem = menu.findItem(com.vadym.pectoralepawnshop.R.id.action_share);
         shareActionProvider = (ShareActionProvider) menuItem.getActionProvider();
         setIntent("This is example text");
@@ -163,7 +163,7 @@ public class MainActivity extends Activity {
                 fragment = new HowItWorksFragment();
                 break;
             case 3:
-                fragment = new ForClientsFragment();
+                fragment = new ForClientMaterialFragment();
                 break;
             default:
                 fragment = new TopFragment();
