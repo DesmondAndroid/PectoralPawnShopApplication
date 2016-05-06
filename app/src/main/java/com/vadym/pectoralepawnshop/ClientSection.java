@@ -9,8 +9,8 @@ public class ClientSection {
     private int imageResourceId;
 
     public static final ClientSection[] topics = {
-            new ClientSection("Partner programm", R.drawable.partnprogramm),
-            new ClientSection("Credit Limit", R.drawable.kreditnylimit)
+            new ClientSection("Партнерская программа", R.drawable.partnprogramm),
+            new ClientSection("Кредитная линия", R.drawable.kreditnylimit)
     };
 
     private ClientSection(String name, int imageResourceId) {

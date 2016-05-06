@@ -2,6 +2,7 @@ package com.vadym.pectoralepawnshop;
 
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,7 +29,15 @@ public class ForClientMaterialFragment extends Fragment {
         forClientsRecycler.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         forClientsRecycler.setLayoutManager(layoutManager);
+
+        adapter.setListener(new CaptionedImagesAdapter.Listener() {
+            public void onClick(int position) {
+                Intent intent = new Intent(getActivity(), ForClientDetailAvtivity.class);
+                intent.putExtra(ForClientDetailAvtivity.EXTRA_TOPICNO, position);
+                getActivity().startActivity(intent);
+            }
+        });
+
         return forClientsRecycler;
     }
-
 }
