@@ -1,4 +1,4 @@
-package com.vadym.pectoralepawnshop;
+package com.vadym.pectoralepawnshop.activities;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -16,6 +16,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ShareActionProvider;
+
+import com.vadym.pectoralepawnshop.R;
+import com.vadym.pectoralepawnshop.fragments.DepartmentFragment;
+import com.vadym.pectoralepawnshop.fragments.ForClientFragment;
+import com.vadym.pectoralepawnshop.fragments.HowItWorksFragment;
+import com.vadym.pectoralepawnshop.fragments.TopFragment;
 
 public class MainActivity extends Activity {
 
@@ -84,7 +90,7 @@ public class MainActivity extends Activity {
                         if (fragment instanceof HowItWorksFragment) {
                             currentPosition = 2;
                         }
-                        if (fragment instanceof ForClientMaterialFragment) {
+                        if (fragment instanceof ForClientFragment) {
                             currentPosition = 3;
                         }
                         setActionBarTitle(currentPosition);
@@ -163,7 +169,7 @@ public class MainActivity extends Activity {
                 fragment = new HowItWorksFragment();
                 break;
             case 3:
-                fragment = new ForClientMaterialFragment();
+                fragment = new ForClientFragment();
                 break;
             default:
                 fragment = new TopFragment();

@@ -1,4 +1,4 @@
-package com.vadym.pectoralepawnshop;
+package com.vadym.pectoralepawnshop.fragments;
 
 
 import android.app.Fragment;
@@ -10,20 +10,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ForClientMaterialFragment extends Fragment {
+import com.vadym.pectoralepawnshop.utils.CaptionedImagesAdapter;
+import com.vadym.pectoralepawnshop.database.DataBaseSimulation;
+import com.vadym.pectoralepawnshop.activities.DetailActivity;
+import com.vadym.pectoralepawnshop.R;
+
+public class ForClientFragment extends Fragment {
+
+    public static final String CLASSNAME = "ForClientFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         RecyclerView forClientsRecycler = (RecyclerView)inflater.inflate(
-                R.layout.fragment_for_client_material, container, false);
-        String[] topicNames = new String[ClientSection.topics.length];
+                R.layout.fragment_recyclerview, container, false);
+        String[] topicNames = new String[DataBaseSimulation.topics_for_clients.length];
         for (int i = 0; i < topicNames.length; i++) {
-            topicNames[i] = ClientSection.topics[i].getName();
+            topicNames[i] = DataBaseSimulation.topics_for_clients[i].getName();
+
         }
-        int[] topicImages = new int[ClientSection.topics.length];
+        int[] topicImages = new int[DataBaseSimulation.topics_for_clients.length];
         for (int i = 0; i < topicImages.length; i++) {
-            topicImages[i] = ClientSection.topics[i].getImageResourceId();
+            topicImages[i] = DataBaseSimulation.topics_for_clients[i].getImageResourceId();
         }
         CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(topicNames, topicImages);
         forClientsRecycler.setAdapter(adapter);
@@ -32,8 +40,9 @@ public class ForClientMaterialFragment extends Fragment {
 
         adapter.setListener(new CaptionedImagesAdapter.Listener() {
             public void onClick(int position) {
-                Intent intent = new Intent(getActivity(), ForClientDetailAvtivity.class);
-                intent.putExtra(ForClientDetailAvtivity.EXTRA_TOPICNO, position);
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra(DetailActivity.EXTRA_TOPICNO, position);
+                intent.putExtra(DetailActivity.EXTRA_CALLEDFRAG, CLASSNAME);
                 getActivity().startActivity(intent);
             }
         });

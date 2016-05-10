@@ -1,4 +1,4 @@
-package com.vadym.pectoralepawnshop;
+package com.vadym.pectoralepawnshop.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.vadym.pectoralepawnshop;
+package com.vadym.pectoralepawnshop.activities;
 
 import android.app.ActionBar;
 import android.os.Bundle;

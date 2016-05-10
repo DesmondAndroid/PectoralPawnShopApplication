@@ -1,4 +1,4 @@
-package com.vadym.pectoralepawnshop;
+package com.vadym.pectoralepawnshop.utils;
 
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.vadym.pectoralepawnshop.R;
 
 /**
  * Created by Vadym on 06.05.2016.

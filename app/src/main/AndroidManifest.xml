@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,12 +18,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignInActivity"
+            android:name=".activities.SignInActivity"
             android:label="@string/title_activity_order_activity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".activities.MainActivity"/>
         <activity
-            android:name=".ForClientDetailAvtivity"
-            android:label="@string/title_activity_for_client_detail_avtivity"></activity>
+            android:name=".activities.DetailActivity"
+            android:label="@string/title_activity_for_client_detail_avtivity"
+            />
     </application>
 
 </manifest>

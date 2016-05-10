@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Pectorale</string>
+    <string name="app_name">Ломбард Pectorale</string>
     <string name="action_settings">Настойки</string>
     <string name="action_create_order">Войти</string>
-    <string name="title_activity_order_activity">ВойтиАктивность</string>
+    <string name="title_activity_order_activity">Войти</string>
     <string name="action_share">Поделиться</string>
     <string name="hello">Hello world</string>
     <string name="title_top">Главный фрагмент</string>
@@ -16,7 +16,7 @@
         <item>Отделение №4 в г. Фастов</item>
         <item>Отделение №5 в г. Белая Церковь</item>
         <item>Отделение №6 в г. Киев</item>
-        <item>Отделение №7 в г. Киев</item>
+        <item>Отделение №7 в г. Киев, Булаховского</item>
         <item>Отделение №8 в г. Киев</item>
         <item>Отделение №9 в г. Буча</item>
     </string-array>
@@ -25,6 +25,7 @@
         <item>ЧЕТЫРЕ ПРОСТЫХ ШАГА</item>
         <item>ВОПРОСЫ И ОТВЕТЫ</item>
         <item>ГРУППЫ ЗАЛОГОВ</item>
+        <item>КАК УПРАВЛЯТЬ СВОИМ ЛИЧНЫМ КАБИНЕТОМ</item>
     </string-array>
     <string-array name="forClients">
         <item>ПАРТНЕРСКАЯ ПРОГРАММА</item>
