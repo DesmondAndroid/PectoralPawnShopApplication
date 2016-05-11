@@ -3,7 +3,10 @@ package com.vadym.pectoralepawnshop.activities;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.MenuItem;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.vadym.pectoralepawnshop.R;
 import com.vadym.pectoralepawnshop.database.DataBaseSimulation;
@@ -15,33 +18,61 @@ public class DetailActivity extends Activity {
     public static final String EXTRA_TOPICNO = "topicNo";
     public static final String EXTRA_CALLEDFRAG = "calledFrag";
 
+    private class MyWebViewClient extends WebViewClient
+    {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url)
+        {
+            view.loadUrl(url);
+            return true;
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_activity);
 
-        //Включение кнопки Вверх
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        //Вывод подробной информации о пицце
-        int topicNo = (Integer) getIntent().getExtras().get(EXTRA_TOPICNO);
-        String calledFragment = (String) getIntent().getExtras().get(EXTRA_CALLEDFRAG);
+        WebView mWebView = (WebView) findViewById(R.id.webView);
+        TextView contentView = (TextView) findViewById(R.id.contentView);
 
-        String topicName = "";
-        int topicImage = 0;
-        switch (calledFragment){
-            case ForClientFragment.CLASSNAME:
-                topicName = DataBaseSimulation.topics_for_clients[topicNo].getName();
-                topicImage = DataBaseSimulation.topics_for_clients[topicNo].getImageResourceId();
-                break;
-            case HowItWorksFragment.CLASSNAME:
-                topicName = DataBaseSimulation.topics_for_how_it_works[topicNo].getName();
-                topicImage = DataBaseSimulation.topics_for_how_it_works[topicNo].getImageResourceId();
-                break;
+        /* An instance of this class will be registered as a JavaScript interface */
+        class MyJavaScriptInterface
+        {
+            private TextView contentView;
+
+            public MyJavaScriptInterface(TextView aContentView)
+            {
+                contentView = aContentView;
+            }
+
+            @SuppressWarnings("unused")
+            public void processContent(String aContent)
+            {
+                final String content = aContent;
+                contentView.post(new Runnable()
+                {
+                    public void run()
+                    {
+                        contentView.setText(content);
+                    }
+                });
+            }
         }
-        getActionBar().setTitle(topicName);
-        ImageView imageView = (ImageView) findViewById(R.id.imageDetailed);
-        imageView.setImageDrawable(getResources().getDrawable(topicImage));
-        imageView.setContentDescription(topicName);
+
+//        mWebView.setWebViewClient(new MyWebViewClient());
+        // включаем поддержку JavaScript
+        mWebView.getSettings().setJavaScriptEnabled(true);
+
+        mWebView.addJavascriptInterface(new MyJavaScriptInterface(contentView), "INTERFACE");
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                view.loadUrl("javascript:window.INTERFACE.processContent(document.getElementsByTagName('body')[0].innerText);");
+            }
+        });
+        // указываем страницу загрузки
+        mWebView.loadUrl("http://pectorale.com.ua/stat/4-prostyh-shaga");
     }
 
     @Override
