@@ -115,7 +115,7 @@ public class MainActivity extends Activity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         boolean isDrawerOpen = drawerLayout.isDrawerOpen(drawerList);
-        menu.findItem(com.vadym.pectoralepawnshop.R.id.action_share).setVisible(!isDrawerOpen);
+        menu.findItem(R.id.action_share).setVisible(!isDrawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -123,7 +123,7 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem menuItem = menu.findItem(com.vadym.pectoralepawnshop.R.id.action_share);
+        MenuItem menuItem = menu.findItem(R.id.action_share);
         shareActionProvider = (ShareActionProvider) menuItem.getActionProvider();
         setIntent("This is example text");
 

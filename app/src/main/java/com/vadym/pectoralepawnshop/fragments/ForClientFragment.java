@@ -41,8 +41,7 @@ public class ForClientFragment extends Fragment {
         adapter.setListener(new CaptionedImagesAdapter.Listener() {
             public void onClick(int position) {
                 Intent intent = new Intent(getActivity(), DetailActivity.class);
-                intent.putExtra(DetailActivity.EXTRA_TOPICNO, position);
-                intent.putExtra(DetailActivity.EXTRA_CALLEDFRAG, CLASSNAME);
+                intent.putExtra(DetailActivity.URL, DataBaseSimulation.topics_for_clients[position].getUrl());
                 getActivity().startActivity(intent);
             }
         });
