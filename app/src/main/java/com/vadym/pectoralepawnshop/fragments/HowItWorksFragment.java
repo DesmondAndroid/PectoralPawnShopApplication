@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vadym.pectoralepawnshop.R;
-import com.vadym.pectoralepawnshop.activities.DetailActivity;
+import com.vadym.pectoralepawnshop.activities.DetailTopicsActivity;
 import com.vadym.pectoralepawnshop.database.DataBaseSimulation;
 import com.vadym.pectoralepawnshop.utils.CaptionedImagesAdapter;
 
@@ -36,8 +36,10 @@ public class HowItWorksFragment extends Fragment {
 
         adapter.setListener(new CaptionedImagesAdapter.Listener() {
             public void onClick(int position) {
-                Intent intent = new Intent(getActivity(), DetailActivity.class);
-                intent.putExtra(DetailActivity.URL, DataBaseSimulation.topics_for_how_it_works[position].getUrl());
+                Intent intent = new Intent(getActivity(), DetailTopicsActivity.class);
+                intent.putExtra(DetailTopicsActivity.URL, DataBaseSimulation.topics_for_how_it_works[position].getUrl());
+                intent.putExtra(DetailTopicsActivity.NAME, DataBaseSimulation.topics_for_how_it_works[position].getName());
+
                 getActivity().startActivity(intent);
             }
         });

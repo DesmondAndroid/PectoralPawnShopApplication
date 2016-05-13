@@ -1,5 +1,6 @@
 package com.vadym.pectoralepawnshop.activities;
 
+import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.vadym.pectoralepawnshop.R;
 
@@ -15,20 +17,27 @@ import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 
-public class DetailActivity extends Activity {
+public class DetailTopicsActivity extends Activity {
 
     public static final String URL = "URLtoPAGE";
+    public static final String NAME = "NAMEOFTOPIC";
     private WebView mWebView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_activity);
+        setContentView(R.layout.activity_detail_topics);
 
         mWebView = (WebView) findViewById(R.id.webView);
+
         Intent intent = getIntent();
-        String url = intent.getStringExtra(DetailActivity.URL);
+        String url = intent.getStringExtra(DetailTopicsActivity.URL);
+        String name = intent.getStringExtra(DetailTopicsActivity.NAME);
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(name);
 
         new UpdateDrinkTask(this).execute(url);
     }
@@ -70,9 +79,15 @@ public class DetailActivity extends Activity {
         protected void onPostExecute(String htmldocument) {
             mWebView.getSettings().setJavaScriptEnabled(true);
             mWebView.loadData(htmldocument, "text/html; charset=utf-8", null);
-            if (dialog.isShowing()) {
-                dialog.dismiss();
-            }
+            mWebView.setWebViewClient(new WebViewClient() {
+                public void onPageFinished(WebView view, String url) {
+                    // do your stuff here
+                    if (dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
+                }
+            });
+
         }
     }
 
