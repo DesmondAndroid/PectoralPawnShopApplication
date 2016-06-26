@@ -25,8 +25,6 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
-
         private CardView cardView;
 
         public ViewHolder(CardView v) {

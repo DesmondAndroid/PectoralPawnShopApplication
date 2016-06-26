@@ -1,5 +1,7 @@
 package com.vadym.pectoralepawnshop.activities;
 
+import android.app.ActionBar;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -10,10 +12,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.vadym.pectoralepawnshop.R;
+import com.vadym.pectoralepawnshop.database.DataBaseSimulation;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    public static final String NAME = "DEPARTMENT_NUMBER";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        Intent intent = getIntent();
+        int numberOfDepartment = intent.getIntExtra(MapsActivity.NAME, 0);
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(DataBaseSimulation.departments[numberOfDepartment].getName());
     }
 
 

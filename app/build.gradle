@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'pectoralerelease'
             keyPassword 'fszDw09w'
-            storeFile file('C:/Users/sergey/.android/debug.keystore')
+            storeFile file('C:/Users/Администратор/.android/debug.keystore')
             storePassword 'fszDw09w'
         }
     }

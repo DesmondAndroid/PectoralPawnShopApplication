@@ -32,6 +32,7 @@ public class DepartmentFragment extends ListFragment {
         super.onListItemClick(l, v, pos, id);
         Toast.makeText(getActivity(), "Item " + pos + " was clicked", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getActivity(), MapsActivity.class);
+        intent.putExtra(MapsActivity.NAME, pos);
         getActivity().startActivity(intent);
     }
 }
