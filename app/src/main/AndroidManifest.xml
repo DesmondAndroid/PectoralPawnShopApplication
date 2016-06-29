@@ -33,14 +33,19 @@
         </activity>
         <activity
             android:name=".activities.SignInActivity"
+            android:theme="@style/AppTheme.Dark"
             android:label="@string/title_activity_order_activity"
-            android:parentActivityName=".activities.MainActivity" />
+            />
         <activity
             android:name=".activities.DetailTopicsActivity"
             android:label="@string/title_activity_for_client_detail_avtivity" />
         <activity
             android:name=".activities.DetailDepartmentActivity"
-            android:label="@string/title_activity_detail_department" />
+            android:label="@string/title_activity_detail_department"
+            android:parentActivityName=".activities.MainActivity"/>
+        <activity
+            android:name=".activities.MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -53,9 +58,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".activities.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>
