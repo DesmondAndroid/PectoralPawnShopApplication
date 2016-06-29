@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ public class SignInActivity extends Activity  {
 
     @InjectView(R.id.input_email) EditText _emailText;
     @InjectView(R.id.input_password) EditText _passwordText;
+    @InjectView(R.id.checkbox) CheckBox _checkbox;
     @InjectView(R.id.btn_login) Button _loginButton;
 
     @Override
@@ -127,11 +129,18 @@ public class SignInActivity extends Activity  {
             _emailText.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
+        if (password.isEmpty() || password.length() < 6 || password.length() > 15) {
             _passwordText.setError("Пожалуйста, введите не меньше 6 символов");
             valid = false;
         } else {
             _passwordText.setError(null);
+        }
+
+        if(!_checkbox.isChecked()){
+            _checkbox.setError("Нужно согласиться c условиями договора");
+            valid = false;
+        } else {
+            _checkbox.setError(null);
         }
 
         return valid;

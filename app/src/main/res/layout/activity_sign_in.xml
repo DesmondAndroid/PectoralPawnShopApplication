@@ -8,7 +8,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
+        android:layout_gravity="center"
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
@@ -43,6 +43,15 @@
                 android:inputType="textPassword"
                 android:hint="Пароль"/>
         </android.support.design.widget.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="12dp"
+            android:text="С условиями Договора о предоставлении финансового кредита,  договора залога имущества №2, Внутренними правилами оформления, выдачи и возврата кредита, Правилами дистанционного обслуживания клиентов ОЗНАКОМЛЕН и СОГЛАСЕН!"/>
 
         <Button
             android:id="@+id/btn_login"

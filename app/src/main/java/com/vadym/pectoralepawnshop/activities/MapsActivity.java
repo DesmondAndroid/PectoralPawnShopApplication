@@ -4,12 +4,14 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.vadym.pectoralepawnshop.R;
@@ -41,8 +43,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         TextView name = (TextView) findViewById(R.id.name);
         TextView city = (TextView) findViewById(R.id.city);
         TextView address = (TextView) findViewById(R.id.address);
-        TextView telephonNumber = (TextView) findViewById(R.id.telephonNumber);
-        TextView hoursWorking = (TextView) findViewById(R.id.hoursWorking);
+        TextView telephonNumber = (TextView) findViewById(R.id.telephone);
+        TextView hoursWorking = (TextView) findViewById(R.id.workingHours);
 
         name.setText(department.getName());
         city.setText(department.getCity());
@@ -70,8 +72,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(department.getCoordinateX(), department.getCoordinateY());
-        mMap.addMarker(new MarkerOptions().position(sydney).title(department.getName()));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng departmentCoordinate = new LatLng(department.getCoordinateX(), department.getCoordinateY());
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(departmentCoordinate)
+                .zoom(16)
+                .tilt(20)
+                .build();
+        mMap.addMarker(new MarkerOptions().position(departmentCoordinate).title(department.getName()));
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+        mMap.getUiSettings().setAllGesturesEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(menuItem);
+        }
     }
 }
