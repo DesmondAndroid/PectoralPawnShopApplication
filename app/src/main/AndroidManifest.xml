@@ -38,9 +38,6 @@
         <activity
             android:name=".activities.DetailTopicsActivity"
             android:label="@string/title_activity_for_client_detail_avtivity" />
-        <activity
-            android:name=".activities.DetailDepartmentActivity"
-            android:label="@string/title_activity_detail_department" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
