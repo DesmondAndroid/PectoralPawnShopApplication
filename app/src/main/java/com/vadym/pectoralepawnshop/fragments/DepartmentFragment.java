@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.vadym.pectoralepawnshop.activities.MapsActivity;
 
@@ -28,7 +27,6 @@ public class DepartmentFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int pos, long id) {
         super.onListItemClick(l, v, pos, id);
-        Toast.makeText(getActivity(), "Item " + pos + " was clicked", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getActivity(), MapsActivity.class);
         intent.putExtra(MapsActivity.NAME, pos);
         getActivity().startActivity(intent);
