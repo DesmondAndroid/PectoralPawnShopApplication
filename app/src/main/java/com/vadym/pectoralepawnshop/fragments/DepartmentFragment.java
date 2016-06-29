@@ -11,9 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.vadym.pectoralepawnshop.activities.DetailTopicsActivity;
 import com.vadym.pectoralepawnshop.activities.MapsActivity;
-import com.vadym.pectoralepawnshop.database.DataBaseSimulation;
 
 public class DepartmentFragment extends ListFragment {
 

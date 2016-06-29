@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -13,11 +14,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.vadym.pectoralepawnshop.R;
 import com.vadym.pectoralepawnshop.database.DataBaseSimulation;
+import com.vadym.pectoralepawnshop.database.DepartmentEntity;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     public static final String NAME = "DEPARTMENT_NUMBER";
+    private DepartmentEntity department;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +33,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Intent intent = getIntent();
         int numberOfDepartment = intent.getIntExtra(MapsActivity.NAME, 0);
-
+        department = DataBaseSimulation.departments[numberOfDepartment];
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(DataBaseSimulation.departments[numberOfDepartment].getName());
+        actionBar.setTitle(department.getName());
+
+        TextView name = (TextView) findViewById(R.id.name);
+        TextView city = (TextView) findViewById(R.id.city);
+        TextView address = (TextView) findViewById(R.id.address);
+        TextView telephonNumber = (TextView) findViewById(R.id.telephonNumber);
+        TextView hoursWorking = (TextView) findViewById(R.id.hoursWorking);
+
+        name.setText(department.getName());
+        city.setText(department.getCity());
+        address.setText(department.getAddress());
+        StringBuilder telephons = new StringBuilder();
+        for(String telephon : department.getTelephoneNumbers()){
+            telephons.append(telephon).append(" ");
+        }
+        telephonNumber.setText(telephons.toString());
+        hoursWorking.setText(department.getHoursWorking());
     }
 
 
@@ -51,8 +70,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        LatLng sydney = new LatLng(department.getCoordinateX(), department.getCoordinateY());
+        mMap.addMarker(new MarkerOptions().position(sydney).title(department.getName()));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
