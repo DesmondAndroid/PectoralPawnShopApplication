@@ -70,6 +70,8 @@ public class DetailTopicsActivity extends Activity {
                 document.select("div.container_inside > div.row > div").remove();
                 // Remove all links in the text
                 document.select("a").unwrap();
+                // Remove faq block
+                document.select("div.faq_link").remove();
                 return document.toString();
             } catch (IOException e) {
                 return "Ошибка загрузки страницы, попробуйте чуть позже.";

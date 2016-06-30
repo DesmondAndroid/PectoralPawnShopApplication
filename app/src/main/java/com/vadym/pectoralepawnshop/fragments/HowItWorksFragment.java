@@ -39,7 +39,6 @@ public class HowItWorksFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), DetailTopicsActivity.class);
                 intent.putExtra(DetailTopicsActivity.URL, DataBaseSimulation.topics_for_how_it_works[position].getUrl());
                 intent.putExtra(DetailTopicsActivity.NAME, DataBaseSimulation.topics_for_how_it_works[position].getName());
-
                 getActivity().startActivity(intent);
             }
         });

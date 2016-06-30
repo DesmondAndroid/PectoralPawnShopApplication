@@ -37,7 +37,6 @@ public class SignInActivity extends Activity  {
         ButterKnife.inject(this);
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 login();
@@ -111,7 +110,7 @@ public class SignInActivity extends Activity  {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Не правильный логин или пароль", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Пожалуйста проверьте введеные данные и подтвердите лицензионное соглашение", Toast.LENGTH_LONG).show();
 
         _loginButton.setEnabled(true);
     }

@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Ломбард Pectorale</string>
+    <string name="app_name">Ломбард Пектораль</string>
     <!--<string name="action_settings">Настойки</string>-->
     <string name="action_create_order">Войти</string>
     <string name="title_activity_order_activity">Войти</string>
     <string name="hello">Hello world</string>
-    <string name="title_top">Главный фрагмент</string>
+    <string name="title_top">Новости ломбарда</string>
     <string name="open_drawer">Открыть меню</string>
     <string name="close_drawer">Закрыть меню</string>
 
