@@ -2,10 +2,15 @@ package com.vadym.pectoralepawnshop.activities;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,11 +22,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.vadym.pectoralepawnshop.R;
 import com.vadym.pectoralepawnshop.database.DataBaseSimulation;
 import com.vadym.pectoralepawnshop.database.DepartmentEntity;
+import com.vadym.pectoralepawnshop.database.PectoraleDatabaseHelper;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    public static final String DEPARTNO = "DEPARTNO";
     private GoogleMap mMap;
-    public static final String NAME = "DEPARTMENT_NUMBER";
     private DepartmentEntity department;
 
     @Override
@@ -29,13 +35,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         Intent intent = getIntent();
-        int numberOfDepartment = intent.getIntExtra(MapsActivity.NAME, 0);
-        department = DataBaseSimulation.departments[numberOfDepartment];
+        int numberOfDepartment = intent.getIntExtra(MapsActivity.DEPARTNO, 0);
+
+        try {
+            SQLiteOpenHelper starbuzzDatabaseHelper = new PectoraleDatabaseHelper(this);
+            SQLiteDatabase db = starbuzzDatabaseHelper.getReadableDatabase();
+            Cursor cursorDepartment = db.query("DEPARTMENT",
+                    new String[]{"NAME", "COORDINATE_X", "COORDINATE_Y", "CITY", "ADDRESS", "WORKING_HOURS"},
+                    "DEPARTMENT_ID = ?",
+                    new String[]{Integer.toString(numberOfDepartment)},
+                    null, null, null);
+            Cursor cursorNumber = db.query("TELEPHONE",
+                    new String[]{"TELEPHONE"},
+                    "DEPARTMENT_ID = ?",
+                    new String[]{Integer.toString(numberOfDepartment)},
+                    null, null, null);
+            //Переход к первой записи в курсоре
+            if (cursorDepartment.moveToFirst()) {
+                //Получение данных напитка из курсора
+                String name = cursorDepartment.getString(0);
+                double coordinateX = Double.parseDouble(cursorDepartment.getString(1));
+                double coordinateY = Double.parseDouble(cursorDepartment.getString(2));
+                String city = cursorDepartment.getString(3);
+                String address = cursorDepartment.getString(4);
+                String wordingHours = cursorDepartment.getString(5);
+                String[] numbers = new String[cursorNumber.getCount()];
+                int count = 0;
+                while (cursorNumber.moveToNext()){
+                    numbers[count++] = cursorNumber.getString(0);
+                }
+                department = new DepartmentEntity(name, coordinateX, coordinateY, city, address, numbers, wordingHours);
+            }
+            cursorDepartment.close();
+            cursorNumber.close();
+            db.close();
+        } catch(SQLiteException e) {
+            Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(department.getName());

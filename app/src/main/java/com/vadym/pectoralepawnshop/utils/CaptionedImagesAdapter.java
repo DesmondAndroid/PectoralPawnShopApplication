@@ -1,5 +1,10 @@
 package com.vadym.pectoralepawnshop.utils;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -8,8 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vadym.pectoralepawnshop.R;
+import com.vadym.pectoralepawnshop.database.DepartmentEntity;
+import com.vadym.pectoralepawnshop.database.PectoraleDatabaseHelper;
 
 /**
  * Created by Vadym on 06.05.2016.
@@ -33,9 +41,31 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
         }
     }
 
-    public CaptionedImagesAdapter(String[] captions, int[] imageIds) {
-        this.captions = captions;
-        this.imageIds = imageIds;
+    public CaptionedImagesAdapter(String section, Context context) {
+        try {
+            SQLiteOpenHelper starbuzzDatabaseHelper = new PectoraleDatabaseHelper(context);
+            SQLiteDatabase db = starbuzzDatabaseHelper.getReadableDatabase();
+            Cursor cursorDepartment = db.query("TOPIC",
+                    new String[]{"NAME", "IMAGE_RESOURCE_ID"},
+                    "SECTION = ?",
+                    new String[]{section},
+                    null, null, null);
+            //Переход к первой записи в курсоре
+            int countData = cursorDepartment.getCount();
+            captions = new String[countData];
+            imageIds = new int[countData];
+            int count = 0;
+            while (cursorDepartment.moveToNext()) {
+                captions[count] = cursorDepartment.getString(0);
+                imageIds[count] = Integer.parseInt(cursorDepartment.getString(1));
+                count++;
+            }
+            cursorDepartment.close();
+            db.close();
+        } catch(SQLiteException e) {
+            Toast toast = Toast.makeText(context, "Database unavailable", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     @Override

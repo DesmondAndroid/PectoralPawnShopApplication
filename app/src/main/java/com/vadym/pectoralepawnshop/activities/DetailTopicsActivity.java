@@ -3,14 +3,20 @@ package com.vadym.pectoralepawnshop.activities;
 import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.vadym.pectoralepawnshop.R;
+import com.vadym.pectoralepawnshop.database.PectoraleDatabaseHelper;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,8 +25,7 @@ import java.io.IOException;
 
 public class DetailTopicsActivity extends Activity {
 
-    public static final String URL = "URLtoPAGE";
-    public static final String NAME = "NAMEOFTOPIC";
+    public static final String ID_TOPIC = "idTopic";
     private WebView mWebView;
 
 
@@ -31,15 +36,36 @@ public class DetailTopicsActivity extends Activity {
 
         mWebView = (WebView) findViewById(R.id.webView);
 
-        Intent intent = getIntent();
-        String url = intent.getStringExtra(DetailTopicsActivity.URL);
-        String name = intent.getStringExtra(DetailTopicsActivity.NAME);
+        int idTopic = (Integer) getIntent().getExtras().get(ID_TOPIC);
 
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(name);
+        //Создание курсора
+        try {
+            SQLiteOpenHelper pectoraleDatabaseHelper = new PectoraleDatabaseHelper(this);
+            SQLiteDatabase db = pectoraleDatabaseHelper.getReadableDatabase();
+            Cursor cursor = db.query("TOPIC",
+                    new String[]{"NAME", "URL", "IMAGE_RESOURCE_ID"},
+                    "_id = ?",
+                    new String[]{Integer.toString(idTopic)},
+                    null, null, null);
+            if (cursor.moveToFirst()) {
+                //Получение данных статьи из курсора
+                String name = cursor.getString(1);
+                String url = cursor.getString(2);
 
-        new UpdateDrinkTask(this).execute(url);
+                ActionBar actionBar = getActionBar();
+                actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setTitle(name);
+
+                new UpdateDrinkTask(this).execute(url);
+            }
+            cursor.close();
+            db.close();
+        } catch (SQLiteException e) {
+            Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+
     }
 
     private class UpdateDrinkTask extends AsyncTask<String, Void, String> {

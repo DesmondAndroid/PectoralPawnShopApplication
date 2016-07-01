@@ -1,7 +1,7 @@
 package com.vadym.pectoralepawnshop.database;
 
 /**
- * Created by Администратор on 25.06.2016.
+ * Created by Vadym on 25.06.2016.
  */
 public class CaptionedImageEntity {
 

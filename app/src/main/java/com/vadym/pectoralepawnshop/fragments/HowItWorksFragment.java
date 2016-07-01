@@ -29,7 +29,7 @@ public class HowItWorksFragment extends Fragment {
         for (int i = 0; i < topicImages.length; i++) {
             topicImages[i] = DataBaseSimulation.topics_for_how_it_works[i].getImageResourceId();
         }
-        CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(topicNames, topicImages);
+        CaptionedImagesAdapter adapter = new CaptionedImagesAdapter("HOW_IT_WORKS", howItWorksRecycler.getContext());
         howItWorksRecycler.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         howItWorksRecycler.setLayoutManager(layoutManager);
@@ -37,8 +37,7 @@ public class HowItWorksFragment extends Fragment {
         adapter.setListener(new CaptionedImagesAdapter.Listener() {
             public void onClick(int position) {
                 Intent intent = new Intent(getActivity(), DetailTopicsActivity.class);
-                intent.putExtra(DetailTopicsActivity.URL, DataBaseSimulation.topics_for_how_it_works[position].getUrl());
-                intent.putExtra(DetailTopicsActivity.NAME, DataBaseSimulation.topics_for_how_it_works[position].getName());
+                intent.putExtra(DetailTopicsActivity.ID_TOPIC, position);
                 getActivity().startActivity(intent);
             }
         });

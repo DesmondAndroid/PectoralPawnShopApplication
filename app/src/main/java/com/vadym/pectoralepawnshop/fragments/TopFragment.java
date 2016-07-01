@@ -44,13 +44,12 @@ public class TopFragment extends Fragment {
 
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),2);
         newsRecycler.setLayoutManager(layoutManager);
-        CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(newsNames, newsImages);
+        CaptionedImagesAdapter adapter = new CaptionedImagesAdapter("NEWS", layout.getContext());
         newsRecycler.setAdapter(adapter);
         adapter.setListener(new CaptionedImagesAdapter.Listener() {
             public void onClick(int position) {
                 Intent intent = new Intent(getActivity(), DetailTopicsActivity.class);
-                intent.putExtra(DetailTopicsActivity.URL, DataBaseSimulation.topics_news[position].getUrl());
-                intent.putExtra(DetailTopicsActivity.NAME, DataBaseSimulation.topics_news[position].getName());
+                intent.putExtra(DetailTopicsActivity.ID_TOPIC, position);
                 getActivity().startActivity(intent);
             }
         });
