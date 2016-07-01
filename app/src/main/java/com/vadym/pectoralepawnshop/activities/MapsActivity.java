@@ -46,7 +46,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             SQLiteDatabase db = starbuzzDatabaseHelper.getReadableDatabase();
             Cursor cursorDepartment = db.query("DEPARTMENT",
                     new String[]{"NAME", "COORDINATE_X", "COORDINATE_Y", "CITY", "ADDRESS", "WORKING_HOURS"},
-                    "DEPARTMENT_ID = ?",
+                    "_id = ?",
                     new String[]{Integer.toString(numberOfDepartment)},
                     null, null, null);
             Cursor cursorNumber = db.query("TELEPHONE",

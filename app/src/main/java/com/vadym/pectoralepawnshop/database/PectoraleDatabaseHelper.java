@@ -30,14 +30,15 @@ public class PectoraleDatabaseHelper extends SQLiteOpenHelper {
 
     private void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < 1) {
-            db.execSQL("CREATE TABLE TOPIC (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+            db.execSQL("CREATE TABLE TOPIC ("
+                    + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "SECTION TEXT, "
                     + "NAME TEXT, "
                     + "URL TEXT, "
                     + "IMAGE_RESOURCE_ID INTEGER);");
 
             db.execSQL("CREATE TABLE DEPARTMENT ( "
-                    + "DEPARTMENT_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "NAME TEXT, "
                     + "COORDINATE_X REAL, "
                     + "COORDINATE_Y REAL, "

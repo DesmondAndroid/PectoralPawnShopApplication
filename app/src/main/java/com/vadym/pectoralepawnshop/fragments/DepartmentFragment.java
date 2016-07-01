@@ -29,11 +29,11 @@ public class DepartmentFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        try {
+        try {
             SQLiteOpenHelper starbuzzDatabaseHelper = new PectoraleDatabaseHelper(getActivity());
             db = starbuzzDatabaseHelper.getReadableDatabase();
             cursor = db.query("DEPARTMENT",
-                    new String[]{"DEPARTMENT_ID", "NAME"},
+                    new String[]{"_id", "NAME"},
                     null, null, null, null, null);
             CursorAdapter listAdapter = new SimpleCursorAdapter(getActivity(),
                     android.R.layout.simple_list_item_1,
@@ -42,10 +42,10 @@ public class DepartmentFragment extends ListFragment {
                     new int[]{android.R.id.text1},
                     0);
             setListAdapter(listAdapter);
- /*       } catch(SQLiteException e) {
+        } catch(SQLiteException e) {
             Toast toast = Toast.makeText(getActivity(), "Database unavailable", Toast.LENGTH_SHORT);
             toast.show();
-        }*/
+        }
     }
 
     @Override
