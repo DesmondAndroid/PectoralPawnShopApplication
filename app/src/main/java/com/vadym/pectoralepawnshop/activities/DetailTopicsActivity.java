@@ -41,7 +41,7 @@ public class DetailTopicsActivity extends Activity {
         try {
             SQLiteOpenHelper pectoraleDatabaseHelper = new PectoraleDatabaseHelper(this);
             SQLiteDatabase db = pectoraleDatabaseHelper.getReadableDatabase();
-            Cursor cursor = db.query("TOPIC",
+            Cursor cursor = db.query(PectoraleDatabaseHelper.TN_TOPIC,
                     new String[]{"NAME", "URL"},
                     "_id = ?",
                     new String[]{Integer.toString(idTopic)},
@@ -62,7 +62,7 @@ public class DetailTopicsActivity extends Activity {
             cursor.close();
             db.close();
         } catch (SQLiteException e) {
-            Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, R.string.dbunvaliable, Toast.LENGTH_SHORT);
             toast.show();
         }
 
@@ -78,7 +78,7 @@ public class DetailTopicsActivity extends Activity {
         }
 
         protected void onPreExecute() {
-            dialog.setMessage("Загружаем страницу с интернета, подождите...");
+            dialog.setMessage(getString(R.string.loadingpage));
             dialog.show();
         }
 
@@ -101,7 +101,7 @@ public class DetailTopicsActivity extends Activity {
                 document.select("div.faq_link").remove();
                 return document.toString();
             } catch (IOException e) {
-                return "Ошибка загрузки страницы, попробуйте чуть позже.";
+                return getString(R.string.errorloadingpage);
             }
         }
 

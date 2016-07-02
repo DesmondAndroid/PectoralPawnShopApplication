@@ -46,9 +46,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(com.vadym.pectoralepawnshop.R.layout.activity_main);
 
-        titles = getResources().getStringArray(com.vadym.pectoralepawnshop.R.array.titles);
-        drawerList = (ListView) findViewById(com.vadym.pectoralepawnshop.R.id.drawer);
-        drawerLayout = (DrawerLayout) findViewById(com.vadym.pectoralepawnshop.R.id.drawer_layout);
+        titles = getResources().getStringArray(R.array.titles);
+        drawerList = (ListView) findViewById(R.id.drawer);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList.setAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, titles));
         drawerList.setOnItemClickListener(new DrawerItemClickListener());

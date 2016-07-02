@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vadym.pectoralepawnshop.R;
-import com.vadym.pectoralepawnshop.database.DepartmentEntity;
 import com.vadym.pectoralepawnshop.database.PectoraleDatabaseHelper;
 
 /**
@@ -66,7 +65,7 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
             cursorDepartment.close();
             db.close();
         } catch(SQLiteException e) {
-            Toast toast = Toast.makeText(context, "Database unavailable", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(context, R.string.dbunvaliable, Toast.LENGTH_SHORT);
             toast.show();
         }
     }

@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.vadym.pectoralepawnshop.R;
 import com.vadym.pectoralepawnshop.activities.DetailTopicsActivity;
 import com.vadym.pectoralepawnshop.activities.SignInActivity;
+import com.vadym.pectoralepawnshop.database.PectoraleDatabaseHelper;
 import com.vadym.pectoralepawnshop.utils.CaptionedImagesAdapter;
 
 public class TopFragment extends Fragment {
@@ -27,7 +28,7 @@ public class TopFragment extends Fragment {
         RecyclerView newsRecycler = (RecyclerView)layout.findViewById(R.id.news_recycler);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),2);
         newsRecycler.setLayoutManager(layoutManager);
-        CaptionedImagesAdapter adapter = new CaptionedImagesAdapter("NEWS", layout.getContext());
+        CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(PectoraleDatabaseHelper.SECTION_NEWS, layout.getContext());
         newsRecycler.setAdapter(adapter);
         adapter.setListener(new CaptionedImagesAdapter.Listener() {
             public void onClick(int idTopic) {

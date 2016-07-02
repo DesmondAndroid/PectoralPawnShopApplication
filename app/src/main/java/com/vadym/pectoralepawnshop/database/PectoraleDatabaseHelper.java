@@ -15,6 +15,14 @@ public class PectoraleDatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "pectorale"; // Имя базы данных
     private static final int DB_VERSION = 1; // Версия базы данных
 
+    public static final String TN_TOPIC = "TOPIC";
+    public static final String TN_DEPARTMENT = "DEPARTMENT";
+    public static final String TN_TELEPHONE = "TELEPHONE";
+
+    public static final String SECTION_HOWITWORKS = "HOW_IT_WORKS";
+    public static final String SECTION_NEWS = "NEWS";
+    public static final String SECTION_FORCLIENTS = "FOR_CLIENTS";
+
     public PectoraleDatabaseHelper(Context context){
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -23,6 +31,7 @@ public class PectoraleDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
         updateMyDatabase(db, 0, DB_VERSION);
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         updateMyDatabase(db, oldVersion, newVersion);
@@ -30,14 +39,14 @@ public class PectoraleDatabaseHelper extends SQLiteOpenHelper {
 
     private void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < 1) {
-            db.execSQL("CREATE TABLE TOPIC ("
+            db.execSQL("CREATE TABLE " + TN_TOPIC + " ("
                     + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "SECTION TEXT, "
                     + "NAME TEXT, "
                     + "URL TEXT, "
                     + "IMAGE_RESOURCE_ID INTEGER);");
 
-            db.execSQL("CREATE TABLE DEPARTMENT ( "
+            db.execSQL("CREATE TABLE " + TN_DEPARTMENT + " ( "
                     + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "NAME TEXT, "
                     + "COORDINATE_X REAL, "
@@ -46,25 +55,25 @@ public class PectoraleDatabaseHelper extends SQLiteOpenHelper {
                     + "ADDRESS TEXT, "
                     + "WORKING_HOURS TEXT);");
 
-            db.execSQL("CREATE TABLE TELEPHONE ("
+            db.execSQL("CREATE TABLE " + TN_TELEPHONE + " ("
                     + "TELEPHONE_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "DEPARTMENT_ID INTEGER NOT NULL, "
                     + "TELEPHONE TEXT);");
 
-            insertDataTopic(db, "HOW_IT_WORKS", "КАК ЖЕ ЭТО РАБОТАЕТ", "http://pectorale.com.ua/stat/kak-eto-rabotaet", R.drawable.howitworks);
-            insertDataTopic(db, "HOW_IT_WORKS", "ЧЕТЫРЕ ПРОСТЫХ ШАГА", "http://pectorale.com.ua/stat/4-prostyh-shaga", R.drawable.steps);
-            insertDataTopic(db, "HOW_IT_WORKS", "ВОПРОСЫ И ОТВЕТЫ", "http://pectorale.com.ua/stat/faq", R.drawable.faq);
-            insertDataTopic(db, "HOW_IT_WORKS", "ГРУППЫ ЗАЛОГОВ", "http://pectorale.com.ua/stat/groups", R.drawable.securedloans);
-            insertDataTopic(db, "HOW_IT_WORKS", "КАК УПРАВЛЯТЬ СВОИМ ЛИЧНЫМ КАБИНЕТОМ", "http://pectorale.com.ua/stat/kak-upravljat-svoim-lichnym-kabinetom", R.drawable.howmanageaccount);
+            insertDataTopic(db, SECTION_HOWITWORKS, "КАК ЖЕ ЭТО РАБОТАЕТ", "http://pectorale.com.ua/stat/kak-eto-rabotaet", R.drawable.howitworks);
+            insertDataTopic(db, SECTION_HOWITWORKS, "ЧЕТЫРЕ ПРОСТЫХ ШАГА", "http://pectorale.com.ua/stat/4-prostyh-shaga", R.drawable.steps);
+            insertDataTopic(db, SECTION_HOWITWORKS, "ВОПРОСЫ И ОТВЕТЫ", "http://pectorale.com.ua/stat/faq", R.drawable.faq);
+            insertDataTopic(db, SECTION_HOWITWORKS, "ГРУППЫ ЗАЛОГОВ", "http://pectorale.com.ua/stat/groups", R.drawable.securedloans);
+            insertDataTopic(db, SECTION_HOWITWORKS, "КАК УПРАВЛЯТЬ СВОИМ ЛИЧНЫМ КАБИНЕТОМ", "http://pectorale.com.ua/stat/kak-upravljat-svoim-lichnym-kabinetom", R.drawable.howmanageaccount);
 
-            insertDataTopic(db, "NEWS", "Новый продукт – новые возможности!", "http://pectorale.com.ua/stat/novyi-produkt---novye-vozmozhnosti", R.drawable.newproductnewvozm);
-            insertDataTopic(db, "NEWS", "Открыто новое отделение в районе метро Левобережная", "http://pectorale.com.ua/stat/novoe-otdelenie-8", R.drawable.newdepartment);
-            insertDataTopic(db, "NEWS", "Кредит на карту в ломбарде онлайн", "http://pectorale.com.ua/stat/kredit-na-kartu-v-lombard-onlain", R.drawable.kreditnakartu);
-            insertDataTopic(db, "NEWS", "Первый мобильный онлайн ломбард в Украине", "http://pectorale.com.ua/stat/lombard-pektoral---pervyi-mobilnyi-onlain-lombard-v-ukraine", R.drawable.perviymobilniy);
-            insertDataTopic(db, "NEWS", "Доставка/передача предмета залога для выдачи кредита на карту", "http://pectorale.com.ua/stat/dostavkaperedacha-predmeta-zaloga-dlja-vydachi-kredita-na-kartu", R.drawable.dostavka);
+            insertDataTopic(db, SECTION_NEWS, "Новый продукт – новые возможности!", "http://pectorale.com.ua/stat/novyi-produkt---novye-vozmozhnosti", R.drawable.newproductnewvozm);
+            insertDataTopic(db, SECTION_NEWS, "Открыто новое отделение в районе метро Левобережная", "http://pectorale.com.ua/stat/novoe-otdelenie-8", R.drawable.newdepartment);
+            insertDataTopic(db, SECTION_NEWS, "Кредит на карту в ломбарде онлайн", "http://pectorale.com.ua/stat/kredit-na-kartu-v-lombard-onlain", R.drawable.kreditnakartu);
+            insertDataTopic(db, SECTION_NEWS, "Первый мобильный онлайн ломбард в Украине", "http://pectorale.com.ua/stat/lombard-pektoral---pervyi-mobilnyi-onlain-lombard-v-ukraine", R.drawable.perviymobilniy);
+            insertDataTopic(db, SECTION_NEWS, "Доставка/передача предмета залога для выдачи кредита на карту", "http://pectorale.com.ua/stat/dostavkaperedacha-predmeta-zaloga-dlja-vydachi-kredita-na-kartu", R.drawable.dostavka);
 
-            insertDataTopic(db, "FOR_CLIENTS", "Партнерская программа", "http://pectorale.com.ua/stat/partnerskaja-programma", R.drawable.partnprogramm);
-            insertDataTopic(db, "FOR_CLIENTS", "Кредитная линия", "http://pectorale.com.ua/stat/kredit_line", R.drawable.kreditnylimit);
+            insertDataTopic(db, SECTION_FORCLIENTS, "Партнерская программа", "http://pectorale.com.ua/stat/partnerskaja-programma", R.drawable.partnprogramm);
+            insertDataTopic(db, SECTION_FORCLIENTS, "Кредитная линия", "http://pectorale.com.ua/stat/kredit_line", R.drawable.kreditnylimit);
 
             insertDepartment(db, "Отделение №1 в г. Боярка", 50.327975, 30.292260, "Боярка", "ул. Белгородская, 19А", new String[]{"(068) 345-00-01", "(045) 984-75-60"}, "Пн-Сб 9:00 - 20:00\nВс 10:00 - 19:00");
             insertDepartment(db, "Отделение №2 в г. Киев", 50.466737, 30.627153, "Киев", "ул. Братиславская, 14", new String[]{"(068) 345-00-02", "(044) 513-83-84"}, "Пн-Сб 09:00 - 20.00\nВс 10:00 - 19:00");

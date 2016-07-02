@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.vadym.pectoralepawnshop.database.PectoraleDatabaseHelper;
 import com.vadym.pectoralepawnshop.utils.CaptionedImagesAdapter;
 import com.vadym.pectoralepawnshop.activities.DetailTopicsActivity;
 import com.vadym.pectoralepawnshop.R;
@@ -23,7 +24,7 @@ public class ForClientFragment extends Fragment {
                              Bundle savedInstanceState) {
         RecyclerView forClientsRecycler = (RecyclerView)inflater.inflate(
                 R.layout.fragment_recyclerview, container, false);
-        CaptionedImagesAdapter adapter = new CaptionedImagesAdapter("FOR_CLIENTS", forClientsRecycler.getContext());
+        CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(PectoraleDatabaseHelper.SECTION_FORCLIENTS, forClientsRecycler.getContext());
         forClientsRecycler.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         forClientsRecycler.setLayoutManager(layoutManager);

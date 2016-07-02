@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.vadym.pectoralepawnshop.R;
 import com.vadym.pectoralepawnshop.activities.DetailTopicsActivity;
+import com.vadym.pectoralepawnshop.database.PectoraleDatabaseHelper;
 import com.vadym.pectoralepawnshop.utils.CaptionedImagesAdapter;
 
 public class HowItWorksFragment extends Fragment {
@@ -20,7 +21,7 @@ public class HowItWorksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RecyclerView howItWorksRecycler = (RecyclerView)inflater.inflate(
                 R.layout.fragment_recyclerview, container, false);
-        CaptionedImagesAdapter adapter = new CaptionedImagesAdapter("HOW_IT_WORKS", howItWorksRecycler.getContext());
+        CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(PectoraleDatabaseHelper.SECTION_HOWITWORKS, howItWorksRecycler.getContext());
         howItWorksRecycler.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         howItWorksRecycler.setLayoutManager(layoutManager);

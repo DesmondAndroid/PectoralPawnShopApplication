@@ -14,6 +14,7 @@ import android.widget.CursorAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import com.vadym.pectoralepawnshop.R;
 import com.vadym.pectoralepawnshop.activities.MapsActivity;
 import com.vadym.pectoralepawnshop.database.PectoraleDatabaseHelper;
 
@@ -28,7 +29,7 @@ public class DepartmentFragment extends ListFragment {
         try {
             SQLiteOpenHelper starbuzzDatabaseHelper = new PectoraleDatabaseHelper(getActivity());
             db = starbuzzDatabaseHelper.getReadableDatabase();
-            cursor = db.query("DEPARTMENT",
+            cursor = db.query(PectoraleDatabaseHelper.TN_DEPARTMENT,
                     new String[]{"_id", "NAME"},
                     null, null, null, null, null);
             CursorAdapter listAdapter = new SimpleCursorAdapter(getActivity(),
@@ -39,7 +40,7 @@ public class DepartmentFragment extends ListFragment {
                     0);
             setListAdapter(listAdapter);
         } catch(SQLiteException e) {
-            Toast toast = Toast.makeText(getActivity(), "Database unavailable", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getActivity(), R.string.dbunvaliable, Toast.LENGTH_SHORT);
             toast.show();
         }
     }

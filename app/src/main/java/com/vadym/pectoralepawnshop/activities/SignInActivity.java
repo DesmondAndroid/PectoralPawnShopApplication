@@ -24,10 +24,17 @@ public class SignInActivity extends Activity  {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
 
-    @InjectView(R.id.input_email) EditText _emailText;
-    @InjectView(R.id.input_password) EditText _passwordText;
-    @InjectView(R.id.checkbox) CheckBox _checkbox;
-    @InjectView(R.id.btn_login) Button _loginButton;
+    @InjectView(R.id.input_email)
+    EditText _emailText;
+
+    @InjectView(R.id.input_password)
+    EditText _passwordText;
+
+    @InjectView(R.id.checkbox)
+    CheckBox _checkbox;
+
+    @InjectView(R.id.btn_login)
+    Button _loginButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,7 +67,7 @@ public class SignInActivity extends Activity  {
         final ProgressDialog progressDialog = new ProgressDialog(SignInActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Идет авторизация, подождите...");
+        progressDialog.setMessage(getString(R.string.loadingauthorization));
         progressDialog.show();
 
         String email = _emailText.getText().toString();
@@ -109,8 +116,7 @@ public class SignInActivity extends Activity  {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Пожалуйста проверьте введеные данные и подтвердите лицензионное соглашение", Toast.LENGTH_LONG).show();
-
+        Toast.makeText(getBaseContext(), R.string.onloginfailed, Toast.LENGTH_LONG).show();
         _loginButton.setEnabled(true);
     }
 
@@ -121,21 +127,21 @@ public class SignInActivity extends Activity  {
         String password = _passwordText.getText().toString();
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("Введите корректный email");
+            _emailText.setError(getString(R.string.validemail));
             valid = false;
         } else {
             _emailText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 6 || password.length() > 15) {
-            _passwordText.setError("Пожалуйста, введите не меньше 6 символов");
+            _passwordText.setError(getString(R.string.validpassword));
             valid = false;
         } else {
             _passwordText.setError(null);
         }
 
         if(!_checkbox.isChecked()){
-            _checkbox.setError("Нужно согласиться c условиями договора");
+            _checkbox.setError(getString(R.string.validchackbox));
             valid = false;
         } else {
             _checkbox.setError(null);

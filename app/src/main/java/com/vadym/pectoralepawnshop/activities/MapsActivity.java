@@ -43,7 +43,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         try {
             SQLiteOpenHelper starbuzzDatabaseHelper = new PectoraleDatabaseHelper(this);
             SQLiteDatabase db = starbuzzDatabaseHelper.getReadableDatabase();
-            Cursor cursorDepartment = db.query("DEPARTMENT",
+            Cursor cursorDepartment = db.query(PectoraleDatabaseHelper.TN_DEPARTMENT,
                     new String[]{"NAME", "COORDINATE_X", "COORDINATE_Y", "CITY", "ADDRESS", "WORKING_HOURS"},
                     "_id = ?",
                     new String[]{Integer.toString(numberOfDepartment)},
@@ -73,7 +73,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             cursorNumber.close();
             db.close();
         } catch(SQLiteException e) {
-            Toast toast = Toast.makeText(this, "Database unavailable", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, R.string.dbunvaliable, Toast.LENGTH_SHORT);
             toast.show();
         }
 

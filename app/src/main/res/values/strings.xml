@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Ломбард Пектораль</string>
-    <!--<string name="action_settings">Настойки</string>-->
     <string name="action_create_order">Войти</string>
     <string name="title_activity_order_activity">Войти</string>
     <string name="hello">Hello world</string>
@@ -8,28 +7,6 @@
     <string name="open_drawer">Открыть меню</string>
     <string name="close_drawer">Закрыть меню</string>
 
-    <string-array name="departments">
-        <item>Отделение №1 в г. Боярка</item>
-        <item>Отделение №2 в г. Киев</item>
-        <item>Отделение №3 в г. Васильков</item>
-        <item>Отделение №4 в г. Фастов</item>
-        <item>Отделение №5 в г. Белая Церковь</item>
-        <item>Отделение №6 в г. Киев</item>
-        <item>Отделение №7 в г. Киев, Булаховского</item>
-        <item>Отделение №8 в г. Киев</item>
-        <item>Отделение №9 в г. Буча</item>
-    </string-array>
-    <string-array name="howItWorks">
-        <item>КАК ЖЕ ЭТО РАБОТАЕТ</item>
-        <item>ЧЕТЫРЕ ПРОСТЫХ ШАГА</item>
-        <item>ВОПРОСЫ И ОТВЕТЫ</item>
-        <item>ГРУППЫ ЗАЛОГОВ</item>
-        <item>КАК УПРАВЛЯТЬ СВОИМ ЛИЧНЫМ КАБИНЕТОМ</item>
-    </string-array>
-    <string-array name="forClients">
-        <item>ПАРТНЕРСКАЯ ПРОГРАММА</item>
-        <item>КРЕДИТНАЯ ЛИНИЯ</item>
-    </string-array>
     <string-array name="titles">
         <item>Главная</item>
         <item>Отделения</item>
@@ -42,4 +19,12 @@
     <string name="title_activity_for_client_detail_avtivity">ForClientDetailAvtivity</string>
     <string name="title_activity_detail_department">DetailDepartmentActivity</string>
     <string name="title_activity_maps">Map</string>
+    <string name="dbunvaliable">База данных не доступна</string>
+    <string name="loadingpage">Загружаем страницу с интернета, подождите…</string>
+    <string name="errorloadingpage">Ошибка загрузки страницы, попробуйте чуть позже.</string>
+    <string name="loadingauthorization">Идет авторизация, подождите…</string>
+    <string name="onloginfailed">Пожалуйста проверьте введеные данные и подтвердите лицензионное соглашение</string>
+    <string name="validemail">Введите корректный email</string>
+    <string name="validpassword">Пожалуйста, введите не меньше 6 символов</string>
+    <string name="validchackbox">Нужно согласиться c условиями договора</string>
 </resources>
