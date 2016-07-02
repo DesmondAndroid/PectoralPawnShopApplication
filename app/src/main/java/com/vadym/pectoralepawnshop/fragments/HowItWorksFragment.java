@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.vadym.pectoralepawnshop.R;
 import com.vadym.pectoralepawnshop.activities.DetailTopicsActivity;
-import com.vadym.pectoralepawnshop.database.DataBaseSimulation;
 import com.vadym.pectoralepawnshop.utils.CaptionedImagesAdapter;
 
 public class HowItWorksFragment extends Fragment {
@@ -21,23 +20,15 @@ public class HowItWorksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RecyclerView howItWorksRecycler = (RecyclerView)inflater.inflate(
                 R.layout.fragment_recyclerview, container, false);
-        String[] topicNames = new String[DataBaseSimulation.topics_for_how_it_works.length];
-        for (int i = 0; i < topicNames.length; i++) {
-            topicNames[i] = DataBaseSimulation.topics_for_how_it_works[i].getName();
-        }
-        int[] topicImages = new int[DataBaseSimulation.topics_for_how_it_works.length];
-        for (int i = 0; i < topicImages.length; i++) {
-            topicImages[i] = DataBaseSimulation.topics_for_how_it_works[i].getImageResourceId();
-        }
         CaptionedImagesAdapter adapter = new CaptionedImagesAdapter("HOW_IT_WORKS", howItWorksRecycler.getContext());
         howItWorksRecycler.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         howItWorksRecycler.setLayoutManager(layoutManager);
 
         adapter.setListener(new CaptionedImagesAdapter.Listener() {
-            public void onClick(int position) {
+            public void onClick(int idTopic) {
                 Intent intent = new Intent(getActivity(), DetailTopicsActivity.class);
-                intent.putExtra(DetailTopicsActivity.ID_TOPIC, position);
+                intent.putExtra(DetailTopicsActivity.ID_TOPIC, idTopic);
                 getActivity().startActivity(intent);
             }
         });

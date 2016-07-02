@@ -138,20 +138,10 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent(this, SignInActivity.class);
                 startActivity(intent);
                 return true;
-/*            case R.id.action_settings:
-
-                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-/*
-    private void setIntent(String text) {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, text);
-        shareActionProvider.setShareIntent(intent);
-    }*/
 
     private void selectItem(int position) {
         currentPosition = position;

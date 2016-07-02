@@ -10,19 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.vadym.pectoralepawnshop.R;
 import com.vadym.pectoralepawnshop.activities.DetailTopicsActivity;
 import com.vadym.pectoralepawnshop.activities.SignInActivity;
-import com.vadym.pectoralepawnshop.database.DataBaseSimulation;
 import com.vadym.pectoralepawnshop.utils.CaptionedImagesAdapter;
 
-import butterknife.InjectView;
-
 public class TopFragment extends Fragment {
-
-//    @InjectView(R.id.btn_autorization) Button loginButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,25 +25,14 @@ public class TopFragment extends Fragment {
                 inflater.inflate(R.layout.fragment_top, container, false);
         Button loginButton = (Button) layout.findViewById(R.id.btn_autorization);
         RecyclerView newsRecycler = (RecyclerView)layout.findViewById(R.id.news_recycler);
-
-        String[] newsNames = new String[DataBaseSimulation.topics_news.length];
-        for (int i = 0; i < newsNames.length; i++) {
-            newsNames[i] = DataBaseSimulation.topics_news[i].getName();
-        }
-
-        int[] newsImages = new int[DataBaseSimulation.topics_news.length];
-        for (int i = 0; i < newsImages.length; i++) {
-            newsImages[i] = DataBaseSimulation.topics_news[i].getImageResourceId();
-        }
-
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),2);
         newsRecycler.setLayoutManager(layoutManager);
         CaptionedImagesAdapter adapter = new CaptionedImagesAdapter("NEWS", layout.getContext());
         newsRecycler.setAdapter(adapter);
         adapter.setListener(new CaptionedImagesAdapter.Listener() {
-            public void onClick(int position) {
+            public void onClick(int idTopic) {
                 Intent intent = new Intent(getActivity(), DetailTopicsActivity.class);
-                intent.putExtra(DetailTopicsActivity.ID_TOPIC, position);
+                intent.putExtra(DetailTopicsActivity.ID_TOPIC, idTopic);
                 getActivity().startActivity(intent);
             }
         });

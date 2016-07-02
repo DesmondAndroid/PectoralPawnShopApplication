@@ -20,7 +20,6 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.vadym.pectoralepawnshop.R;
-import com.vadym.pectoralepawnshop.database.DataBaseSimulation;
 import com.vadym.pectoralepawnshop.database.DepartmentEntity;
 import com.vadym.pectoralepawnshop.database.PectoraleDatabaseHelper;
 

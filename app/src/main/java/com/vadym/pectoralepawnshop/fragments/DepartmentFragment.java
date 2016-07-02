@@ -8,15 +8,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.CursorAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
-import android.widget.SimpleCursorAdapter;
 
 import com.vadym.pectoralepawnshop.activities.MapsActivity;
 import com.vadym.pectoralepawnshop.database.PectoraleDatabaseHelper;

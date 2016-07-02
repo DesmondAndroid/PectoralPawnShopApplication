@@ -24,12 +24,13 @@ import com.vadym.pectoralepawnshop.database.PectoraleDatabaseHelper;
  */
 public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder> {
 
+    private int[] idsTopic;
     private String[] captions;
     private int[] imageIds;
     private Listener listener;
 
-    public static interface Listener {
-        public void onClick(int position);
+    public interface Listener {
+        void onClick(int idTopic);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -46,7 +47,7 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
             SQLiteOpenHelper starbuzzDatabaseHelper = new PectoraleDatabaseHelper(context);
             SQLiteDatabase db = starbuzzDatabaseHelper.getReadableDatabase();
             Cursor cursorDepartment = db.query("TOPIC",
-                    new String[]{"NAME", "IMAGE_RESOURCE_ID"},
+                    new String[]{"_id", "NAME", "IMAGE_RESOURCE_ID"},
                     "SECTION = ?",
                     new String[]{section},
                     null, null, null);
@@ -54,10 +55,12 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
             int countData = cursorDepartment.getCount();
             captions = new String[countData];
             imageIds = new int[countData];
+            idsTopic = new int[countData];
             int count = 0;
             while (cursorDepartment.moveToNext()) {
-                captions[count] = cursorDepartment.getString(0);
-                imageIds[count] = Integer.parseInt(cursorDepartment.getString(1));
+                idsTopic[count] = Integer.parseInt(cursorDepartment.getString(0));
+                captions[count] = cursorDepartment.getString(1);
+                imageIds[count] = Integer.parseInt(cursorDepartment.getString(2));
                 count++;
             }
             cursorDepartment.close();
@@ -88,7 +91,7 @@ public class CaptionedImagesAdapter extends RecyclerView.Adapter<CaptionedImages
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onClick(position);
+                    listener.onClick(idsTopic[position]);
                 }
             }
         });

@@ -38,19 +38,20 @@ public class DetailTopicsActivity extends Activity {
 
         int idTopic = (Integer) getIntent().getExtras().get(ID_TOPIC);
 
-        //Создание курсора
         try {
             SQLiteOpenHelper pectoraleDatabaseHelper = new PectoraleDatabaseHelper(this);
             SQLiteDatabase db = pectoraleDatabaseHelper.getReadableDatabase();
             Cursor cursor = db.query("TOPIC",
-                    new String[]{"NAME", "URL", "IMAGE_RESOURCE_ID"},
+                    new String[]{"NAME", "URL"},
                     "_id = ?",
                     new String[]{Integer.toString(idTopic)},
                     null, null, null);
             if (cursor.moveToFirst()) {
                 //Получение данных статьи из курсора
-                String name = cursor.getString(1);
-                String url = cursor.getString(2);
+                String name = cursor.getString(0);
+                String url = cursor.getString(1);
+                System.out.println(name);
+                System.out.println(url);
 
                 ActionBar actionBar = getActionBar();
                 actionBar.setDisplayHomeAsUpEnabled(true);
