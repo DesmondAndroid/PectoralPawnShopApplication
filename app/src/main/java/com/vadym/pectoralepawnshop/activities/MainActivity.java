@@ -191,7 +191,7 @@ public class MainActivity extends Activity {
         Fragment topFragment = getFragmentManager().findFragmentByTag("visible_fragment");
         if (topFragment != null && topFragment.isVisible() && topFragment instanceof TopFragment) {
             //THIS BLOCK WILL NOT DO ANYTHING AND WOULD DISABLE BACK BUTTON
-            System.out.println("We are here");
+            finish();
         } else{
             //THIS BLOCK WILL BE CALLED IF ABOVE COND IS FALSE, AND WOULD ENABLE BACK BUTTON
             super.onBackPressed();
