@@ -22,6 +22,8 @@ public class PectoraleDatabaseHelper extends SQLiteOpenHelper {
     public static final String SECTION_HOWITWORKS = "HOW_IT_WORKS";
     public static final String SECTION_NEWS = "NEWS";
     public static final String SECTION_FORCLIENTS = "FOR_CLIENTS";
+    public static final String SECTION_ABOUTUS = "ABOUT_US";
+    public static final String SECTION_DOSTAVKA = "DOSTAVKA";
 
     public PectoraleDatabaseHelper(Context context){
         super(context, DB_NAME, null, DB_VERSION);
@@ -74,6 +76,13 @@ public class PectoraleDatabaseHelper extends SQLiteOpenHelper {
 
             insertDataTopic(db, SECTION_FORCLIENTS, "Партнерская программа", "http://pectorale.com.ua/stat/partnerskaja-programma", R.drawable.partnprogramm);
             insertDataTopic(db, SECTION_FORCLIENTS, "Кредитная линия", "http://pectorale.com.ua/stat/kredit_line", R.drawable.kreditnylimit);
+
+            insertDataTopic(db, SECTION_ABOUTUS, "НАША ИСТОРИЯ", "http://pectorale.com.ua/stat/istorija", R.drawable.history);
+            insertDataTopic(db, SECTION_ABOUTUS, "ПРЕИМУЩЕСТВА", "http://pectorale.com.ua/stat/preimushestva", R.drawable.preimushestva);
+            insertDataTopic(db, SECTION_ABOUTUS, "КОНТАКТЫ", "http://pectorale.com.ua/stat/kontakty", R.drawable.kont);
+            insertDataTopic(db, SECTION_ABOUTUS, "ОТЗЫВЫ", "http://pectorale.com.ua/stat/otzyvy", R.drawable.otzivi);
+
+            insertDataTopic(db, SECTION_DOSTAVKA, "Доставка", "http://pectorale.com.ua/stat/dostavka-zaloga", R.drawable.dostavkarazdel);
 
             insertDepartment(db, "Отделение №1 в г. Боярка", 50.327975, 30.292260, "Боярка", "ул. Белгородская, 19А", new String[]{"(068) 345-00-01", "(045) 984-75-60"}, "Пн-Сб 9:00 - 20:00\nВс 10:00 - 19:00");
             insertDepartment(db, "Отделение №2 в г. Киев", 50.466737, 30.627153, "Киев", "ул. Братиславская, 14", new String[]{"(068) 345-00-02", "(044) 513-83-84"}, "Пн-Сб 09:00 - 20.00\nВс 10:00 - 19:00");

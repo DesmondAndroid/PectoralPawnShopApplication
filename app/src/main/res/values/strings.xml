@@ -9,7 +9,9 @@
 
     <string-array name="titles">
         <item>Главная</item>
+        <item>О нас</item>
         <item>Отделения</item>
+        <item>Доставка</item>
         <item>Как это работает</item>
         <item>Клиентам</item>
     </string-array>

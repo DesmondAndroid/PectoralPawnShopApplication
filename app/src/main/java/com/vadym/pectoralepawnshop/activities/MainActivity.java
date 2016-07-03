@@ -18,6 +18,8 @@ import android.widget.ListView;
 import android.widget.ShareActionProvider;
 
 import com.vadym.pectoralepawnshop.R;
+import com.vadym.pectoralepawnshop.fragments.AboutUsFragment;
+import com.vadym.pectoralepawnshop.fragments.DeliveryFragment;
 import com.vadym.pectoralepawnshop.fragments.DepartmentFragment;
 import com.vadym.pectoralepawnshop.fragments.ForClientFragment;
 import com.vadym.pectoralepawnshop.fragments.HowItWorksFragment;
@@ -84,14 +86,20 @@ public class MainActivity extends Activity {
                         if (fragment instanceof TopFragment) {
                             currentPosition = 0;
                         }
-                        if (fragment instanceof DepartmentFragment) {
+                        if (fragment instanceof AboutUsFragment) {
                             currentPosition = 1;
                         }
-                        if (fragment instanceof HowItWorksFragment) {
+                        if (fragment instanceof DepartmentFragment) {
                             currentPosition = 2;
                         }
-                        if (fragment instanceof ForClientFragment) {
+                        if (fragment instanceof DeliveryFragment) {
                             currentPosition = 3;
+                        }
+                        if (fragment instanceof HowItWorksFragment) {
+                            currentPosition = 4;
+                        }
+                        if (fragment instanceof ForClientFragment) {
+                            currentPosition = 5;
                         }
                         setActionBarTitle(currentPosition);
                         drawerList.setItemChecked(currentPosition, true);
@@ -148,12 +156,18 @@ public class MainActivity extends Activity {
         Fragment fragment;
         switch (position) {
             case 1:
-                fragment = new DepartmentFragment();
+                fragment = new AboutUsFragment();
                 break;
             case 2:
-                fragment = new HowItWorksFragment();
+                fragment = new DepartmentFragment();
                 break;
             case 3:
+                fragment = new DeliveryFragment();
+                break;
+            case 4:
+                fragment = new HowItWorksFragment();
+                break;
+            case 5:
                 fragment = new ForClientFragment();
                 break;
             default:

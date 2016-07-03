@@ -2,10 +2,16 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-        config {
+        release {
+            keyAlias 'pectorale'
+            keyPassword 'fszDw09w'
+            storeFile file('C:/Users/Администратор/Downloads/keys/releasekey.keystore')
+            storePassword 'fszDw09w'
+        }
+        debug {
             keyAlias 'pectoralerelease'
             keyPassword 'fszDw09w'
-            storeFile file('C:/Users/sergey/.android/debug.keystore')
+            storeFile file('C:/Users/Администратор/.android/debug.keystore')
             storePassword 'fszDw09w'
         }
     }
@@ -22,10 +28,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+            signingConfig signingConfigs.release
         }
         debug {
-            signingConfig signingConfigs.config
+            signingConfig signingConfigs.debug
         }
     }
 }
@@ -39,7 +45,7 @@ dependencies {
     compile 'com.android.support:support-v4:23.3.0'
     compile 'org.jsoup:jsoup:1.9.1'
     compile 'com.google.android.gms:play-services:8.4.0'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:design:22.2.0'
     compile 'com.jakewharton:butterknife:6.1.0'
 }
